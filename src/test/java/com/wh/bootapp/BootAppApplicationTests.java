@@ -11,6 +11,12 @@ import reactor.core.publisher.Flux;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @Author kenneth
+ * @Date 12:22 AM 3/29/2019
+ * @Description //TODO BootAppApplicationTests
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BootAppApplicationTests {
@@ -25,9 +31,7 @@ public class BootAppApplicationTests {
     public void testFaltMap() throws InterruptedException {
         Flux.just(1, 2, 3, 4)
                 .log()
-                .flatMap(e -> {
-                    return Flux.just(e * 2).delayElements(Duration.ofSeconds(1));
-                })
+                .flatMap(e -> Flux.just(e * 2).delayElements(Duration.ofSeconds(1)))
                 .subscribe(e -> LOGGER.info("get:{}", e));
         TimeUnit.SECONDS.sleep(10);
     }
